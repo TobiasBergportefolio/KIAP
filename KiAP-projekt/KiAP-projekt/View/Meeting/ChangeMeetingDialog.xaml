@@ -1,0 +1,150 @@
+﻿<Window x:Class="KiAP_projekt.View.ChangeMeetingDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KiAP_projekt.View"
+        mc:Ignorable="d"
+        Title="Rediger Møde" Height="800" Width="1200"
+        WindowStartupLocation="CenterScreen">
+    <!--We use the grid panel to organize the different controls into columns and rows-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="1" Grid.Row="1" Background="#297A77">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#ffff" FontSize="16" FontWeight="Bold">
+                Oversigt over møder
+            </Label>
+            <ListBox Grid.Column="1" Grid.Row="2" Name="LbClusterMeetings" FontSize="20" ItemsSource="{Binding ClusterMeetingViewModels}" SelectedItem="{Binding SelectedClusterMeeting}"/>
+        </Grid>
+
+        <Grid Grid.Column="3" Grid.Row="1" Background="#297A77">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+<!--Controls to fill in information about meeting-->
+            <Label Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Right" Foreground="#ffff" FontSize="14">
+                Dato for møde:
+            </Label>
+            <Label Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Right" Foreground="#ffff" FontSize="14">
+                Tidspunkt:
+            </Label>
+            <Label Grid.Column="1" Grid.Row="6" HorizontalContentAlignment="Right" Foreground="#ffff" FontSize="14">
+                Varighed i timer:
+            </Label>
+            <Label Grid.Column="1" Grid.Row="8" HorizontalContentAlignment="Right" Foreground="#ffff" FontSize="14">
+                Tilmeldingsfrist:
+            </Label>
+            <Label Grid.Column="1" Grid.Row="10" HorizontalAlignment="Right" Foreground="White" FontSize="14">
+                Online:
+            </Label>
+            <Label Name="LblAddress" Grid.Column="1" Grid.Row="11" HorizontalContentAlignment="Right" Foreground="#ffff" FontSize="14">
+                Adresse:
+            </Label>
+            <Label Grid.Column="1" Grid.Row="13" HorizontalContentAlignment="Right" Foreground="#ffff" FontSize="14">
+                Postnummer:
+            </Label>
+            <Label Grid.Column="1" Grid.Row="15" HorizontalContentAlignment="Right" Foreground="#ffff" FontSize="14">
+                By:
+            </Label>
+            <Label Grid.Column="1" Grid.Row="17" HorizontalContentAlignment="Right" Foreground="#ffff" FontSize="14"  >
+                Klyngepakke:
+            </Label>
+            <!--Databinding to properties of the selected clusterMeeting in order to update values.-->
+            <DatePicker Grid.Column="3" Grid.Row="2" Name="DpDate" VerticalAlignment="Center" SelectedDate="{Binding SelectedClusterMeeting.Date, Mode=OneWay}" HorizontalAlignment="Left" Width="150" SelectedDateChanged="DpDate_SelectedDateChanged" />
+            <TextBox Grid.Column="3" Grid.Row="4" x:Name="TbTime" VerticalContentAlignment="Center" Text="{Binding SelectedClusterMeeting.Time, Mode=OneWay}" TextChanged="TbTime_TextChanged" />
+            <ComboBox x:Name="CbDuration" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="6" ItemsSource="{Binding duration}" SelectedItem="{Binding SelectedClusterMeeting.Duration, Mode=OneWay}" SelectionChanged="CbDuration_SelectionChanged"/>
+            <DatePicker Grid.Column="3" Grid.Row="8" Name="DpRegistrationDeadline" VerticalAlignment="Center" SelectedDate="{Binding SelectedClusterMeeting.RegistrationDeadline, Mode=OneWay}" HorizontalAlignment="Left" Width="150" SelectedDateChanged="DpRegistrationDeadline_SelectedDateChanged" />
+            <TextBox Grid.Column="3" Grid.Row="11" x:Name="TbAddress" VerticalContentAlignment="Center" Text="{Binding SelectedClusterMeeting.Address, Mode=OneWay}"/>
+            <TextBox Grid.Column="3" Grid.Row="13" Name="TbPostalCode" VerticalContentAlignment="Center" Text="{Binding SelectedClusterMeeting.PostalCode, Mode=OneWay}"/>
+            <TextBox Grid.Column="3" Grid.Row="15" x:Name="TbCity" VerticalContentAlignment="Center" Text="{Binding SelectedClusterMeeting.City, Mode=OneWay}"/>
+            <ComboBox Grid.Column="3" Grid.Row="17" Name="CbClusterPackageName" SelectedItem="{Binding SelectedClusterMeeting.ClusterPackageName, Mode=OneWay}" ItemsSource="{Binding package}" SelectionChanged="CbClusterPackageName_SelectionChanged" />
+
+            <CheckBox Grid.Column="3" Grid.Row="10" Name="ChbOnline" VerticalAlignment="Center" IsChecked="{Binding SelectedClusterMeeting.Online, Mode=OneWay}" Checked="ChbOnline_Checked" Unchecked="ChbOnline_Unchecked"/>
+
+            <Label Grid.Column="2" Grid.Row="2" HorizontalContentAlignment="Left" Margin="-5,0,0,0" Foreground="White" FontSize="14">
+                *
+            </Label>
+            <Label Grid.Column="2" Grid.Row="4" HorizontalContentAlignment="Left" Margin="-5,0,0,0" Foreground="White" FontSize="14">
+                *
+            </Label>
+            <Label Grid.Column="2" Grid.Row="6" HorizontalContentAlignment="Left" Margin="-5,0,0,0" Foreground="White" FontSize="14">
+                *
+            </Label>
+            <Label Grid.Column="2" Grid.Row="8" HorizontalContentAlignment="Left" Margin="-5,0,0,0" Foreground="White" FontSize="14">
+                *
+            </Label>
+            <Label Grid.Column="2" Grid.Row="17" HorizontalContentAlignment="Left" Margin="-5,0,0,0" Foreground="White" FontSize="14">
+                *
+            </Label>
+            <Label Grid.Column="3" Grid.Row="19" HorizontalContentAlignment="Left" Margin="-5,-5,0,0" Foreground="#ffff" FontSize="12"  >
+                Felter markeret med stjerne(*) skal udfyldes.
+            </Label>
+            
+
+            <Grid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="21">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="3" x:Name="BtnChangeMeeting" Content="Gem ændringer" IsEnabled="false" Style="{StaticResource LightGreenButton}" Click="BtnChangeMeeting_Click"/>
+                <Button Grid.Column="1"  Name="BtnCancel" Content="Annuller" Style="{StaticResource LightGreenButton}" IsCancel="True"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

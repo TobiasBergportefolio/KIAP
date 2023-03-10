@@ -1,0 +1,145 @@
+﻿<Window x:Class="KiAP_projekt.View.CreateMeetingDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KiAP_projekt.View"
+        mc:Ignorable="d"
+        Title="Opret Møde" Height="650" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <!--We use the grid panel to organize the different controls into columns and rows-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <!--<ColumnDefinition Width="*"/>-->
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Column="1" Grid.Row="1" Background="#297A77">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--Controls to fill in information about meeting-->
+            <Label Name="LblDate"  Grid.Column="1" Grid.Row="1" Content="Dato for møde:" Foreground="#ffff" HorizontalContentAlignment="Right"/>
+            <Label Name="LblDuration" Content="Varighed i timer:" Grid.Column="1" Grid.Row="5"  Foreground="#ffff" HorizontalContentAlignment="Right"/>
+            <Label Content="Tidspunkt:" Grid.Column="1" Grid.Row="3" Foreground="#ffff" HorizontalContentAlignment="Right"/>
+            <Label Name="LblRegistrationDeadline" Content="Tilmeldingsfrist:" Grid.Column="1" Grid.Row="7" Foreground="#ffff" HorizontalContentAlignment="Right"/>
+            <Label Name="LblAddress" Content="Adresse:" Grid.Column="1" Grid.Row="10" Foreground="#ffff" HorizontalContentAlignment="Right"/>
+            <Label Name="LblPostalCode" Content="Postnummer:" Grid.Column="1" Grid.Row="12" Foreground="#ffff" HorizontalContentAlignment="Right"/>
+            <Label Name="LblCity" Content="By:" Grid.Column="1" Grid.Row="14"  Foreground="#ffff" HorizontalContentAlignment="Right"/>
+            <Label Name="LblClusterPackage" Content="Klyngepakke:" Grid.Column="1" Grid.Row="16" Foreground="#ffff" HorizontalContentAlignment="Right"/>
+
+            <DatePicker Name="DpDate" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" Width="150" SelectedDateChanged="DpDate_SelectedDateChanged" />
+            <TextBox x:Name="TbTime" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="3" Foreground="Gray" FontStyle="Italic" Text="Format 12:00" MouseDoubleClick="TbTime_MouseDoubleClick" TextChanged="TbTime_TextChanged" />
+            <ComboBox x:Name="CbDuration" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="5" ItemsSource="{Binding duration}" SelectionChanged="CbDuration_SelectionChanged"/>
+            <DatePicker Name="DpRegistrationDeadline" Grid.Column="3" Grid.Row="7" HorizontalAlignment="Left" Width="150" SelectedDateChanged="DpRegistrationDeadline_SelectedDateChanged"  />
+            <TextBox x:Name="TbAddress" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="10" MouseDoubleClick="TbAddress_MouseDoubleClick" />
+            <TextBox Name="TbPostalCode" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="12" />
+            <TextBox x:Name="TbCity" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="14" />
+            <ComboBox Name="CbClusterPackageName" ItemsSource="{Binding package}" Grid.Column="3" Grid.Row="16" SelectionChanged="CbClusterPackageName_SelectionChanged"/>
+
+            <Grid Grid.Row="20" Grid.Column="1" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="BtnCancel" Style="{StaticResource LightGreenButton}" Content="Annuller" IsCancel="True" HorizontalAlignment="Right" Margin="0,0,5,0" Grid.Column="0" Grid.Row="0" Width="130"/>
+                <Button x:Name="BtnCreateMeeting" Style="{StaticResource LightGreenButton}" Content="Opret møde" IsEnabled="false" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,5,0" Click="BtnCreateMeeting_Click" Width="130"/>
+            </Grid>
+
+            <Label Grid.Row="9" Grid.Column="1" HorizontalAlignment="Right" Content="Online" Foreground="White"/>
+
+            <CheckBox Name="ChbOnline" Grid.Column="3" Grid.Row="9" VerticalAlignment="Center" Unchecked="ChbOnline_Unchecked" Checked="ChbOnline_Checked"/>
+
+            <Label Grid.Row="1" Grid.Column="2" Content="*" Foreground="White" Margin="-5, 0, 0, 0"/>
+            <Label Grid.Row="3" Grid.Column="2" Content="*" Foreground="White" Margin="-5, 0, 0, 0"/>
+            <Label Grid.Row="5" Grid.Column="2" Content="*" Foreground="White" Margin="-5, 0, 0, 0"/>
+            <Label Grid.Row="7" Grid.Column="2" Content="*" Foreground="White" Margin="-5, 0, 0, 0"/>
+            <Label Grid.Row="16" Grid.Column="2" Content="*" Foreground="White" Margin="-5, 0, 0, 0"/>
+
+            <Label Grid.Row="18" Grid.Column="3" Content="Felter markeret med stjerne(*) skal udfyldes" Foreground="White" Margin="-5, -5, 0, 0" FontSize="11" VerticalAlignment="Stretch"/>
+
+
+        </Grid>
+
+        <!--<Grid Grid.Column="2" Grid.Row="1" Background="#297A77">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="TbName" Grid.Column="0" Grid.Row="1"/>
+            <DatePicker Name="DpDate" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" Width="150" />
+            <TextBox x:Name="TbTime" Grid.Column="0" Grid.Row="5"/>
+            <TextBox x:Name="TbDuration" Grid.Column="0" Grid.Row="7"/>
+            <DatePicker Name="DpRegistrationDeadLine" Grid.Column="0" Grid.Row="9" HorizontalAlignment="Left" Width="150" />
+            <TextBox x:Name="TbAddress" Grid.Column="0" Grid.Row="11"/>
+            <TextBox x:Name="TbCity" Grid.Column="0" Grid.Row="13"/>
+            <TextBox Name="TbPostalCode" Grid.Column="0" Grid.Row="15"/>
+            <ComboBox Name="CbClusterPackageName" ItemsSource="{Binding package}" Grid.Column="0" Grid.Row="17"/>
+            <Button x:Name="BtnCreateMeeting" Content="Opret møde" Grid.Column="0" Grid.Row="19" HorizontalAlignment="Left" Margin="0,0,5,0" Click="BtnCreateMeeting_Click" Width="130"/>
+
+
+        </Grid>-->
+
+    
+    </Grid>
+</Window>

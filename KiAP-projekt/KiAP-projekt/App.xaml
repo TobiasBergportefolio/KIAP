@@ -1,0 +1,14 @@
+﻿<Application x:Class="KiAP_projekt.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:KiAP_projekt"
+              Startup="Application_Startup" 
+             ShutdownMode="OnExplicitShutdown">
+
+    <!--The startup replace the StartupUri for MainWindow with a method to customize startup -->
+    <!--Also implemented the ShowDownMode to "OnExplicitShutdown" which is set to explicit call a Shutdown method to stop the application in the LoginDialog. 
+        Because the lifetime of the application can be ShutDown through the LoginDialog and is not only dependent on the MainWindow shutdown-->
+    <Application.Resources>
+        <ResourceDictionary Source="Styles/ButtonStyles.xaml"/>
+    </Application.Resources>
+</Application>

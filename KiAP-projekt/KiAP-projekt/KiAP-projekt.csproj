@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>KiAP_projekt</RootNamespace>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Logo\**" />
+    <EmbeddedResource Remove="Logo\**" />
+    <None Remove="Logo\**" />
+    <Page Remove="Logo\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Billeder\back-darkgreen.png" />
+    <None Remove="Billeder\KiAPLogo.png" />
+    <None Remove="Billeder\KiAP_Background.png" />
+    <None Remove="Styles\bin.png" />
+    <None Remove="Styles\next.png" />
+    <None Remove="Styles\padlock.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Billeder\back-darkgreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Billeder\KiAPLogo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Billeder\KiAP_Background.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Styles\bin.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Styles\next.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Styles\padlock.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
